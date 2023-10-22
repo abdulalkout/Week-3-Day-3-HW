@@ -30,15 +30,15 @@ class Person{
         this.hands = 2;
     }
 
-    eat = () => {
+    eat() {
         console.log('eat Yaamyy')
     }
 
-    drink = (drink) => {
+    drink(drink){
         console.log(`I am drinking ${drink}`)
     }
 
-    sleep = () => {
+    sleep(){
         console.log('Sleep ZzzzzZ ZzzzZ')
     }
 }
@@ -51,10 +51,15 @@ class PostalWorker extends Person {
     delever(){
         console.log('Postal Worker deliver mail')
     }
+
+    sleep(){
+        super.sleep()
+        console.log('I slept for 8 hours')
+    }
     
     myNormalDay = () => {
-        this.drink('milk')
-        this.eat()
+        super.drink('milk')
+        super.eat()
         this.delever()
         this.sleep()
     }
@@ -67,20 +72,20 @@ class Chef  extends Person {
         this.hasAHat = hasAHat || true;
     }
 
-    cook(){
-        console.log(`the chef is cooking rice`);
+    cook() {
+        console.log(` I am cooking rice`);
     }
 
-    eat(){
-        super.eat();
+    drink(drink){
+        super.drink(drink);
         console.log('and im cooking at the same time')
-    }
+    }  
     
-    myNormalDay = () => {
-        this.drink('beer')
+    myNormalDay() {
+        super.drink('beer')
         this.eat()
         this.cook()
-        this.sleep()
+        super.sleep()
     }
 }
 
@@ -88,8 +93,8 @@ class Chef  extends Person {
 console.log('---------------Q2 log PostalWorker----------------');
 // const tom = new PostalWorker('tom') 
 // const tommy = new PostalWorker('tommy') 
-const PostalWorkerArray = [new PostalWorker('tom'), new PostalWorker('tommy')]
-PostalWorkerArray.forEach(postalWorker => {
+const postalWorkerArray = [new PostalWorker('tom'), new PostalWorker('tommy')]
+postalWorkerArray.forEach(postalWorker => {
     console.log(`${postalWorker.name}`)
     postalWorker.myNormalDay()
     console.log(`---------------------------------------`)
@@ -101,6 +106,10 @@ const chefArray = [new Chef("John", 'black', true), new Chef("semren", 'brown', 
 chefArray.forEach( chef => {
     console.log(`${chef.name}`)
     chef.myNormalDay()
-    chef.eat()
     console.log(`---------------------------------------`)
 })
+
+console.log(`--------------Other ways--------------`)
+
+chefArray[0].drink('wine')
+postalWorkerArray[1].sleep()
