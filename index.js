@@ -17,12 +17,12 @@ class Governor {
 }
 
 console.log(`the Governor ${Governor.name} he is ${Governor.age} and his SSN = ${Governor.ssn}`)
-console.log(Governor.implementation())
+Governor.implementation()
 
 // ------------------- Inheritance ---------------------------//
 
 class Person{
-    constructor(name, eyes, mouth, hair, hands){
+    constructor(name, hair,){
         this.name =name;
         this.eyes = 2;
         this.mouth = 1;
@@ -31,7 +31,7 @@ class Person{
     }
 
     eat = () => {
-        console.log('Yaamyy')
+        console.log('eat Yaamyy')
     }
 
     drink = (drink) => {
@@ -39,33 +39,68 @@ class Person{
     }
 
     sleep = () => {
-        console.log('ZzzzzZ ZzzzZ')
+        console.log('Sleep ZzzzzZ ZzzzZ')
     }
 }
 
 class PostalWorker extends Person {
-    constructor(name, eyes, mouth, hair, hands){
-        super(name, eyes, mouth, hair, hands);
+    constructor(name, hair){
+        super(name, hair);
+    }
+
+    delever(){
+        console.log('Postal Worker deliver mail')
     }
     
-    deliver = () => {
-        console.log(' Postal Worker deliver mail')
+    myNormalDay = () => {
+        this.drink('milk')
+        this.eat()
+        this.delever()
+        this.sleep()
     }
 
 }
 
 class Chef  extends Person {
-    constructor(name, eyes, mouth, hair, hands, hasAHat){
-        super(name, eyes, mouth, hair, hands, this.eat);
-        this.hasAHat = true;
+    constructor(name, hair, hasAHat){
+        super(name, hair);
+        this.hasAHat = hasAHat || true;
+    }
+
+    cook(){
+        console.log(`the chef is cooking rice`);
+    }
+
+    eat(){
+        super.eat();
+        console.log('and im cooking at the same time')
     }
     
-    cook = (cooking = rice) => {
-        console.log(`the chef is cooking ${cooking}`);
+    myNormalDay = () => {
+        this.drink('beer')
+        this.eat()
+        this.cook()
+        this.sleep()
     }
 }
 
 // ----------- PostalWorker ------------//
-const tom = new PostalWorker('tom') 
-const tommy = new PostalWorker('tommy') 
-console.log(`${tom.name} he ${tom.eat()}, ${tom.drink('beers')}, ${tom.sleep()} and ${tom.deliver()} `)
+console.log('---------------Q2 log PostalWorker----------------');
+// const tom = new PostalWorker('tom') 
+// const tommy = new PostalWorker('tommy') 
+const PostalWorkerArray = [new PostalWorker('tom'), new PostalWorker('tommy')]
+PostalWorkerArray.forEach(postalWorker => {
+    console.log(`${postalWorker.name}`)
+    postalWorker.myNormalDay()
+    console.log(`---------------------------------------`)
+})
+
+// ----------- Chef ------------------//
+console.log('---------------Q2 log Chef----------------');
+const chefArray = [new Chef("John", 'black', true), new Chef("semren", 'brown', false)]
+chefArray.forEach( chef => {
+    console.log(`${chef.name}`)
+    chef.myNormalDay()
+    chef.eat()
+    console.log(`---------------------------------------`)
+})
