@@ -22,7 +22,7 @@ Governor.implementation()
 // ------------------- Inheritance ---------------------------//
 
 class Person{
-    constructor(name, hair,){
+    constructor(name, hair){
         this.name =name;
         this.eyes = 2;
         this.mouth = 1;
