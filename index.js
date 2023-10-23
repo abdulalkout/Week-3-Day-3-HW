@@ -22,9 +22,9 @@ Governor.implementation()
 // ------------------- Inheritance ---------------------------//
 
 class Person{
-    constructor(name, hair){
+    constructor(name, hair, eyes){
         this.name =name;
-        this.eyes = 2;
+        this.eyes = eyes;
         this.mouth = 1;
         this.hair = hair || true;
         this.hands = 2;
@@ -44,8 +44,8 @@ class Person{
 }
 
 class PostalWorker extends Person {
-    constructor(name, hair){
-        super(name, hair);
+    constructor(name, hair, eyes){
+        super(name, hair, eyes);
     }
 
     delever(){
@@ -67,8 +67,8 @@ class PostalWorker extends Person {
 }
 
 class Chef  extends Person {
-    constructor(name, hair, hasAHat){
-        super(name, hair);
+    constructor(name, hair,eyes, hasAHat){
+        super(name, hair,eyes);
         this.hasAHat = hasAHat || true;
     }
 
@@ -81,33 +81,39 @@ class Chef  extends Person {
         console.log('and im cooking at the same time')
     }  
     
-    myNormalDay() {
-        super.drink('beer')
-        this.eat()
+    myNormalDay(drink) {
+        this.drink(drink)
+        super.eat()
         this.cook()
         super.sleep()
     }
 }
 
+
+
 // ----------- PostalWorker ------------//
 console.log('---------------Q2 log PostalWorker----------------');
+
 // const tom = new PostalWorker('tom') 
 // const tommy = new PostalWorker('tommy') 
-const postalWorkerArray = [new PostalWorker('tom'), new PostalWorker('tommy')]
+const postalWorkerArray = [new PostalWorker('tom', 'black', 'brown'), new PostalWorker('tommy', 'black', 'brown')]
 postalWorkerArray.forEach(postalWorker => {
     console.log(`${postalWorker.name}`)
     postalWorker.myNormalDay()
     console.log(`---------------------------------------`)
 })
 
+
 // ----------- Chef ------------------//
 console.log('---------------Q2 log Chef----------------');
-const chefArray = [new Chef("John", 'black', true), new Chef("semren", 'brown', false)]
+const chefArray = [new Chef("John", 'black','green', true), new Chef("semren", 'brown', 'brown', false)]
 chefArray.forEach( chef => {
     console.log(`${chef.name}`)
-    chef.myNormalDay()
+    chef.myNormalDay('beer')
     console.log(`---------------------------------------`)
 })
+
+
 
 console.log(`--------------Other ways--------------`)
 
